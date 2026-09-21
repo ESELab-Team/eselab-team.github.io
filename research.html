@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research | ESELab</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-short">ESELab</span><span class="brand-full">Emerging Structures and Energy Laboratory</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="research.html" aria-current="page">Research</a>
+      <a href="people.html">People</a>
+      <a href="papers.html">Papers</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Research</h1>
+      <p>Our projects combine physical model tests, numerical simulation, and machine learning. Choose an area to filter the list.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+
+      <!-- 筛选按钮。data-filter 的值要和下面每个项目 data-tags 里的词对应 -->
+      <div class="filters" role="group" aria-label="Filter by research area">
+        <button data-filter="all" aria-pressed="true">All areas</button>
+        <button data-filter="floating" aria-pressed="false">Floating structures</button>
+        <button data-filter="energy" aria-pressed="false">Ocean energy</button>
+        <button data-filter="learning" aria-pressed="false">Learning and control</button>
+        <button data-filter="seismic" aria-pressed="false">Seismic steel structures</button>
+      </div>
+      <p class="count" aria-live="polite"></p>
+
+      <!--
+        每个项目是一个 <article> 块。新增项目：复制一整块 <article>...</article>。
+        data-tags 可以填：floating energy learning seismic（可填多个，用空格隔开）
+        id 是项目的"锚点"，首页卡片通过 research.html#id 跳到这里
+        图片：把 16:9 的图放进 images 文件夹，再把 src 改成对应文件名
+      -->
+
+      <article class="project-row" id="fb-energy" data-tags="floating energy">
+        <div class="thumb"><img src="images/project-1.svg" alt="Floating breakwater model with wave and tidal energy devices"></div>
+        <div>
+          <h3>Floating breakwater with integrated wave and tidal energy</h3>
+          <p>We designed a 1:10 physical model of a floating breakwater that carries an oscillating water column and a horizontal axis tidal turbine. We are also developing a machine learning surrogate to identify suitable sites in Singapore waters.</p>
+          <ul class="tags"><li>Floating structures</li><li>Ocean energy</li></ul>
+          <!-- 有论文或代码链接时，删掉下面这行两端的注释符号并填入网址
+          <div class="links"><a href="#">Paper</a><a href="#">Code</a></div> -->
+        </div>
+      </article>
+
+      <article class="project-row" id="turbine-rl" data-tags="energy learning">
+        <div class="thumb"><img src="images/project-2.svg" alt="Tidal turbine control simulation"></div>
+        <div>
+          <h3>Reinforcement learning control of tidal turbines</h3>
+          <p>We built a simulation environment for training and testing tidal turbine controllers. Agents learn pitch control under combined wave and current loading.</p>
+          <ul class="tags"><li>Ocean energy</li><li>Learning and control</li></ul>
+        </div>
+      </article>
+
+      <article class="project-row" id="hss-buckling" data-tags="seismic">
+        <div class="thumb"><img src="images/project-3.svg" alt="Local buckling of a steel column"></div>
+        <div>
+          <h3>Cyclic local buckling of steel columns</h3>
+          <p>We simulate inelastic cyclic local buckling in steel hollow section columns under earthquake loading with a fiber based approach.</p>
+          <ul class="tags"><li>Seismic steel structures</li></ul>
+        </div>
+      </article>
+
+      <article class="project-row" id="pv-fragility" data-tags="floating">
+        <div class="thumb"><img src="images/project-4.svg" alt="Offshore photovoltaic platform"></div>
+        <div>
+          <h3>Multihazard fragility of offshore photovoltaic platforms</h3>
+          <p>We assess the multihazard fragility of offshore photovoltaic platforms with OpenSees models.</p>
+          <ul class="tags"><li>Floating structures</li></ul>
+        </div>
+      </article>
+
+      <article class="project-row" id="cfst-formula" data-tags="seismic learning">
+        <div class="thumb"><img src="images/project-5.svg" alt="Concrete filled steel tube column model"></div>
+        <div>
+          <h3>Compact material models for concrete filled steel tubes</h3>
+          <p>We distil a trained Gaussian process surrogate into closed form expressions that give material model parameters for concrete filled steel tube columns.</p>
+          <ul class="tags"><li>Seismic steel structures</li><li>Learning and control</li></ul>
+        </div>
+      </article>
+
+      <article class="project-row" id="waam-columns" data-tags="seismic">
+        <div class="thumb"><img src="images/project-6.svg" alt="Wire arc additively manufactured steel column"></div>
+        <div>
+          <h3>Seismic behavior of additively manufactured steel columns</h3>
+          <p>A test program on the cyclic behavior of steel columns produced by wire arc additive manufacturing.</p>
+          <ul class="tags"><li>Seismic steel structures</li></ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="brand" href="index.html">ESELab</a>
+      <p>Emerging Structures and Energy Laboratory<br>Coastal Protection and Flood Resilience Institute<br>National University of Singapore</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="research.html">Research</a>
+      <a href="people.html">People</a>
+      <a href="papers.html">Papers</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+  <div class="wrap"><p class="copyright">© 2026 Emerging Structures and Energy Laboratory (ESELab)</p></div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
