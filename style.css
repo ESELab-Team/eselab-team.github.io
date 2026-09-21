@@ -177,3 +177,33 @@ address { font-style: normal; line-height: 1.7; margin: 0 0 16px; }
 .footer-nav { display: flex; flex-direction: column; gap: 6px; }
 .site-footer .copyright { margin-top: 40px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, .14); font-size: .85rem; color: #9DB5C6; }
 @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+
+/* ---------- 首页封面图 ---------- */
+.hero.has-photo {
+    background: #0F2C4A url("images/hero.jpg") center / cover no-repeat;
+}
+
+    .hero.has-photo::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(15, 44, 74, .85) 0%, rgba(15, 44, 74, .55) 55%, rgba(15, 44, 74, .15) 100%);
+    }
+
+    .hero.has-photo .contours {
+        display: none;
+    }
+
+    .hero.has-photo h1, .hero.has-photo .lede {
+        color: #fff;
+    }
+
+    .hero.has-photo .affil {
+        color: #CFDEE8;
+    }
+
+@media (max-width: 760px) {
+    .hero.has-photo::before {
+        background: rgba(15, 44, 74, .72);
+    }
+}
