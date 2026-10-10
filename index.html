@@ -6,7 +6,7 @@
   <title>ESELab | Emerging Structures and Energy Laboratory</title>
   <meta name="description" content="Research on floating structures, ocean energy, and seismic resilience of steel structures.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261010-2">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -75,17 +75,12 @@
         </article>
       </div>
 
-      <aside class="visitor-location" data-visitor-location aria-labelledby="visitor-location-title">
-        <div class="visitor-globe" role="img" aria-label="Approximate visitor location">
-          <span class="globe-meridian globe-meridian-one" aria-hidden="true"></span>
-          <span class="globe-meridian globe-meridian-two" aria-hidden="true"></span>
-          <span class="globe-equator" aria-hidden="true"></span>
-          <span class="globe-marker" data-location-marker aria-hidden="true"></span>
+      <aside class="visitor-map" aria-label="Visitor map">
+        <div class="visitor-map-frame">
+          <!-- Live visitor tracker — world map widget · by FeedPulse -->
+          <script async src="https://feed-pulse.com/api/embed/visitor-globe.js?site_id=8ace6608-efb5-4036-bcda-f48375b8127f&amp;map=globe&amp;sz=sm&amp;theme=indigo&amp;speed=normal"></script>
         </div>
-        <h3 id="visitor-location-title">Visitor location</h3>
-        <p class="visitor-place" data-location-label aria-live="polite">Choose to display your approximate city or region.</p>
-        <button class="visitor-location-button" type="button" data-location-button>Show my approximate location</button>
-        <p class="visitor-note">After confirmation, ipwho.is estimates your city from your IP; precise location is not requested.</p>
+        <p class="visitor-map-note">Approximate visitor locations and visit counts.</p>
       </aside>
     </div>
   </section>

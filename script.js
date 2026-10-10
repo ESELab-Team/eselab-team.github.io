@@ -82,14 +82,8 @@
     'Test setup for the seismic performance experiment': '抗震性能试验加载装置',
     'Two 3D-printed rectangular steel column specimens': '两个3D打印矩形钢柱试件',
     'Close-up view of the 3D-printing process': '3D打印过程局部特写',
-    'Visitor location': '访客位置',
-    'Approximate visitor location': '访客大致位置',
-    'Choose to display your approximate city or region.': '选择显示您所在的大致城市或地区。',
-    'Show my approximate location': '显示我的大致位置',
-    'Locating your approximate location…': '正在获取您的大致位置…',
-    'After confirmation, ipwho.is estimates your city from your IP; precise location is not requested.': '确认后，将通过 ipwho.is 根据 IP 推断城市；不会请求精确位置。',
-    'Location unavailable': '暂时无法获取访客位置',
-    'Try again': '重试',
+    'Visitor map': '访客地图',
+    'Approximate visitor locations and visit counts.': '显示访客的大致地区和访问数量。',
     'Seismic performance testing of 3D-printed structural steel columns has officially begun! This research is being conducted in collaboration with Professor Zhiyang Xie, Dr. Ting Lou, and Dr. Jialiang Jin. We look forward to a smooth test program that will deepen our understanding of the seismic performance of 3D-printed steel structures. As AI develops rapidly, reliable experimental data uncontaminated by AI are becoming especially valuable. We hope this program will produce high-quality data, and we will do our best to make the experimental data openly available.': '3D 打印钢结构柱抗震性能试验正式启动！这次我们与谢智阳教授、楼挺博士、金家良博士合作开展研究，期待试验顺利进行，进一步拓展对 3D 打印钢结构抗震性能的认识。在 AI 快速发展的今天，真实可靠且没有被AI污染过的试验数据显得尤为珍贵。希望这次试验能获得高质量的数据，当然我们也会尽力去开源试验数据。',
     'Join the lab': '加入我们',
     'We welcome PhD students, postdocs, and visiting researchers interested in marine structures, ocean energy, and structural engineering.': '欢迎对海洋结构、海洋能源和结构工程感兴趣的博士研究生、博士后及访问学者加入我们。',
@@ -238,7 +232,6 @@
     translateAttributes(currentLanguage);
     updateLanguageSwitch(currentLanguage);
     saveLanguage(currentLanguage);
-    renderVisitorLocation();
 
     if (updateUrl) {
       try {
@@ -351,88 +344,6 @@
   }
 
     initCarousels();
-
-  var visitorLocationData = { status: 'idle' };
-
-  function renderVisitorLocation() {
-    var card = document.querySelector('[data-visitor-location]');
-    if (!card) return;
-    var label = card.querySelector('[data-location-label]');
-    var marker = card.querySelector('[data-location-marker]');
-    var button = card.querySelector('[data-location-button]');
-    if (!label || !marker || !button) return;
-    var status = visitorLocationData ? visitorLocationData.status : 'idle';
-
-    if (status === 'idle') {
-      label.textContent = currentLanguage === 'zh' ? '选择显示您所在的大致城市或地区。' : 'Choose to display your approximate city or region.';
-      button.textContent = currentLanguage === 'zh' ? '显示我的大致位置' : 'Show my approximate location';
-      button.disabled = false;
-      button.hidden = false;
-      return;
-    }
-    if (status === 'loading') {
-      label.textContent = currentLanguage === 'zh' ? '正在获取您的大致位置…' : 'Locating your approximate location…';
-      button.disabled = true;
-      return;
-    }
-    if (status === 'error') {
-      label.textContent = currentLanguage === 'zh' ? '暂时无法获取访客位置' : 'Location unavailable';
-      button.textContent = currentLanguage === 'zh' ? '重试' : 'Try again';
-      button.disabled = false;
-      button.hidden = false;
-      return;
-    }
-
-    label.textContent = visitorLocationData.place;
-    button.hidden = true;
-    marker.style.setProperty('--marker-x', visitorLocationData.x + '%');
-    marker.style.setProperty('--marker-y', visitorLocationData.y + '%');
-    card.classList.add('is-ready');
-  }
-
-  function initVisitorLocation() {
-    var card = document.querySelector('[data-visitor-location]');
-    if (!card) return;
-    var button = card.querySelector('[data-location-button]');
-    if (!button) return;
-
-    button.addEventListener('click', function () {
-      var message = currentLanguage === 'zh'
-        ? '此操作会联系 ipwho.is，并向其传送您的 IP 地址以推断所在城市。是否继续？'
-        : 'This will contact ipwho.is and share your IP address with it to estimate your city. Continue?';
-      if (!window.confirm(message)) return;
-
-      visitorLocationData = { status: 'loading' };
-      renderVisitorLocation();
-
-      fetch('https://ipwho.is/')
-      .then(function (response) {
-        if (!response.ok) throw new Error('Location service unavailable');
-        return response.json();
-      })
-      .then(function (data) {
-        if (data.success === false) throw new Error(data.message || 'Location lookup failed');
-        var parts = [data.city, data.region, data.country].filter(function (part, index, values) {
-          return part && values.indexOf(part) === index;
-        });
-        var latitude = Number(data.latitude) || 0;
-        var longitude = Number(data.longitude) || 0;
-        visitorLocationData = {
-          status: 'ready',
-          place: parts.join(', ') || (currentLanguage === 'zh' ? '未知位置' : 'Unknown location'),
-          x: Math.max(12, Math.min(88, 50 + longitude / 180 * 38)),
-          y: Math.max(12, Math.min(88, 50 - latitude / 90 * 38))
-        };
-        renderVisitorLocation();
-      })
-      .catch(function () {
-        visitorLocationData = { status: 'error' };
-        renderVisitorLocation();
-      });
-    });
-  }
-
-  initVisitorLocation();
 
   var bar = document.querySelector('.filters');
   if (!bar) return;
