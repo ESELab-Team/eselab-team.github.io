@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,54 +32,56 @@
     </div>
   </section>
 
-  <!-- ========== 负责人 ========== -->
-  <section class="section">
-    <div class="wrap pi">
-      <!-- 换成照片：把照片放进 images 文件夹（例如 shiye.jpg），再把下面这行换成
-           <img class="avatar" src="images/shiye.jpg" alt="Shiye Wang"> -->
-      <div class="avatar" aria-hidden="true">SW</div>
-      <div>
-        <h2>Shiye Wang</h2>
-        <p class="role">Research Fellow, National University of Singapore</p>
-        <p class="bio">Shiye Wang is a Research Fellow at the Coastal Protection and Flood Resilience Institute, National University of Singapore. Shiye received a PhD in Structural Engineering from Tongji University in 2024, including a year of joint training at EPFL.</p>
-        <p class="bio">Current research covers floating structures for coastal protection, tidal energy, reinforcement learning control, and the seismic behavior of steel and composite structures.</p>
-        <div class="links">
-          <!-- 【改这里】把 # 换成真实网址 -->
-          <a href="mailto:your.name@nus.edu.sg">Email</a>
-          <a href="#">Google Scholar</a>
-          <a href="#">ORCID</a>
-          <a href="#">CV</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== 成员 ========== -->
-  <section class="section">
+  <section class="section people-directory">
     <div class="wrap">
-      <h2>Members</h2>
+      <section class="people-group" aria-labelledby="group-leader-heading">
+        <h2 id="group-leader-heading">Group Leader</h2>
+        <article class="person-record">
+          <img class="person-photo" src="images/shiye-wang-portrait.png" alt="Portrait of Shiye Wang">
+          <dl class="person-details">
+            <div class="person-detail">
+              <dt>Name</dt>
+              <dd>Shiye Wang</dd>
+            </div>
+            <div class="person-detail">
+              <dt>Position</dt>
+              <dd>Research Fellow</dd>
+            </div>
+            <div class="person-detail">
+              <dt>Research Area</dt>
+              <dd>
+                <ul class="research-list">
+                  <li>Earthquake Engineering</li>
+                  <li>Steel &amp; Composite Structures</li>
+                  <li>Ocean Energy</li>
+                  <li>AI4S</li>
+                </ul>
+              </dd>
+            </div>
+          </dl>
+        </article>
+      </section>
 
-      <!-- 有成员之后：删掉下面这个 empty 整块，
-           再删掉 members 区块上方单独一行的注释开头符号和下方单独一行的注释结尾符号 -->
-      <div class="empty">
-        <p>We are building the team and welcome PhD students, postdocs, and visiting researchers.</p>
-        <a class="button" href="contact.html">How to apply</a>
-      </div>
-
-      <!--
-      <div class="members">
-        <div class="member">
-          <img class="avatar" src="images/member-1.jpg" alt="Member name">
-          <h3>Member name</h3>
-          <p>PhD student, since 2027</p>
-        </div>
-        <div class="member">
-          <div class="avatar" aria-hidden="true">AB</div>
-          <h3>Member name</h3>
-          <p>Postdoctoral researcher</p>
-        </div>
-      </div>
-      -->
+      <section class="people-group" aria-labelledby="masters-heading">
+        <h2 id="masters-heading">Master's Students (Co-supervised)</h2>
+        <article class="person-record">
+          <img class="person-photo" src="images/member-lu-ruixin.png" alt="Portrait of Ruixin Lü">
+          <dl class="person-details">
+            <div class="person-detail">
+              <dt>Name</dt>
+              <dd>Ruixin Lü</dd>
+            </div>
+            <div class="person-detail">
+              <dt>Research Area</dt>
+              <dd>Seismic performance of steel structural joints</dd>
+            </div>
+            <div class="person-detail">
+              <dt>Year</dt>
+              <dd>Class of 2024</dd>
+            </div>
+          </dl>
+        </article>
+      </section>
     </div>
   </section>
 </main>
