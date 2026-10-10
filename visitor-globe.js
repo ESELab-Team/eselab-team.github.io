@@ -28,6 +28,7 @@ if (container && canvas && totalLabel) {
   let pointerX = 0;
   let pointerY = 0;
   let interactionTime = 0;
+  let resizeFrame = 0;
 
   const places = [
     { en: 'China', zh: '中国', lat: 35.8, lon: 103.8 },
@@ -63,13 +64,30 @@ if (container && canvas && totalLabel) {
 
   const resize = () => {
     const bounds = container.getBoundingClientRect();
-    width = Math.max(1, Math.round(bounds.width));
-    height = Math.max(1, Math.round(bounds.height));
+    const nextWidth = Math.max(1, Math.round(bounds.width));
+    const nextHeight = Math.max(1, Math.round(bounds.height));
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(width * pixelRatio);
-    canvas.height = Math.round(height * pixelRatio);
+    const nextCanvasWidth = Math.round(nextWidth * pixelRatio);
+    const nextCanvasHeight = Math.round(nextHeight * pixelRatio);
+
+    if (
+      width === nextWidth
+      && height === nextHeight
+      && canvas.width === nextCanvasWidth
+      && canvas.height === nextCanvasHeight
+    ) return;
+
+    width = nextWidth;
+    height = nextHeight;
+    if (canvas.width !== nextCanvasWidth) canvas.width = nextCanvasWidth;
+    if (canvas.height !== nextCanvasHeight) canvas.height = nextCanvasHeight;
     context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     draw();
+  };
+
+  const scheduleResize = () => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(resize);
   };
 
   const geometry = () => ({
@@ -349,7 +367,8 @@ if (container && canvas && totalLabel) {
     updateCounterCopy();
     draw();
   }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
-  new ResizeObserver(resize).observe(container);
+  window.addEventListener('resize', scheduleResize, { passive: true });
+  resize();
   loadTexture();
   refreshVisitors();
   window.setInterval(refreshVisitors, 60000);
