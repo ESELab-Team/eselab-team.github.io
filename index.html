@@ -77,10 +77,23 @@
 
       <aside class="visitor-map" aria-label="Visitor map">
         <div class="visitor-map-frame">
-          <!-- Live visitor tracker — world map widget · by FeedPulse -->
-          <script async src="https://feed-pulse.com/api/embed/visitor-globe.js?site_id=8ace6608-efb5-4036-bcda-f48375b8127f&amp;map=globe&amp;sz=sm&amp;theme=indigo&amp;speed=normal"></script>
+          <div class="visitor-map-bar">VISITORS · LAND COVER</div>
+          <div class="visitor-map-heading">
+            <strong>Globe Visitors Counter</strong>
+            <span data-visitor-total>TOTAL VISITORS: —</span>
+          </div>
+          <div id="visitor-globe-map" class="visitor-globe-map" role="img" aria-label="Interactive satellite visitor globe">
+            <canvas id="visitor-globe-canvas" aria-hidden="true"></canvas>
+            <span class="visitor-map-loading">Loading visitor globe…</span>
+          </div>
+          <div class="visitor-map-credit">NASA Blue Marble · FeedPulse data</div>
+          <div class="visitor-map-tracker" aria-hidden="true">
+            <!-- FeedPulse records visits; the visible map uses the same aggregated location data. -->
+            <script async src="https://feed-pulse.com/api/embed/visitor-globe.js?site_id=8ace6608-efb5-4036-bcda-f48375b8127f&amp;map=globe&amp;sz=sm&amp;theme=transparent&amp;speed=off"></script>
+          </div>
         </div>
         <p class="visitor-map-note">Approximate visitor locations and visit counts.</p>
+        <script type="module" src="visitor-globe.js?v=20261010-2"></script>
       </aside>
     </div>
   </section>
@@ -102,6 +115,6 @@
   <div class="wrap"><p class="copyright">© 2026 Emerging Structures and Energy Laboratory (ESELab)</p></div>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js?v=20261010-2"></script>
 </body>
 </html>
