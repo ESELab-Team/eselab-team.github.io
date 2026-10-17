@@ -208,17 +208,34 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); }
 @media (max-width: 720px) { .project-row { grid-template-columns: 1fr; gap: 16px; } }
 
 /* ---------- 论文页 ---------- */
-.pub-year { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 32px; padding: 32px 0; border-top: 1px solid var(--shallow); }
-.pub-year:first-of-type { border-top: 0; padding-top: 0; }
-.pub-year h2 { margin: 0; font-size: 1.6rem; color: var(--sea); }
+.publications-wrap { max-width: 1080px; }
+.publications-note { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; margin: 0 0 42px; color: var(--muted); font-size: .88rem; }
+.publications-note strong { color: var(--text); }
+.publications-note sup, .pub-authors sup { color: var(--magenta); font-weight: 700; line-height: 0; }
+.pub-year { padding: 0 0 58px; }
+.pub-year + .pub-year { padding-top: 48px; border-top: 1px solid var(--contour); }
+.pub-year h2 { margin: 0 0 28px; font-family: var(--sans); font-size: 2.1rem; font-weight: 500; color: var(--text); }
+.pub-year h3 { margin: 0 0 12px; font-family: var(--sans); font-size: 1.35rem; font-weight: 700; color: var(--text); }
+.pub-year .publication-type { margin-top: 32px; }
 .pubs { list-style: none; margin: 0; padding: 0; }
-.pubs li { margin: 0 0 24px; max-width: 46em; }
-.pubs li:last-child { margin-bottom: 0; }
-.pub-title { display: block; font-family: var(--serif); font-size: 1.15rem; line-height: 1.35; color: var(--ink); }
-.pub-meta { display: block; font-size: .95rem; color: var(--muted); }
-.pub-meta strong { color: var(--text); font-weight: 600; }
-.pub-links { display: flex; gap: 14px; margin-top: 4px; font-size: .9rem; }
-@media (max-width: 640px) { .pub-year { grid-template-columns: 1fr; gap: 12px; } }
+.pubs { border: 1px solid var(--contour); }
+.pubs li { padding: 22px 20px 20px; }
+.pubs li + li { border-top: 1px solid var(--contour); }
+.pub-title { margin: 0 0 12px; font-family: var(--sans); font-size: 1.08rem; font-weight: 700; line-height: 1.4; color: var(--text); }
+.pub-authors, .pub-journal { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.55; }
+.pub-authors { margin-bottom: 4px; }
+.pub-authors strong { color: var(--text); font-weight: 700; }
+.pub-journal em { color: var(--muted); }
+@media (max-width: 640px) {
+  .publications-note { display: block; margin-bottom: 32px; }
+  .publications-note span { display: block; }
+  .publications-note span + span { margin-top: 6px; }
+  .pub-year { padding-bottom: 44px; }
+  .pub-year + .pub-year { padding-top: 38px; }
+  .pub-year h2 { margin-bottom: 22px; font-size: 1.8rem; }
+  .pubs li { padding: 18px 16px; }
+  .pub-title { font-size: 1rem; }
+}
 
 /* ---------- 成员页 ---------- */
 .people-directory { padding-top: 72px; }

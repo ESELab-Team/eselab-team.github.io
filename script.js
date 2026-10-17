@@ -171,6 +171,9 @@
 
     'Selected journal papers. See': '精选期刊论文。完整列表请见',
     'for the full list.': '。',
+    'Publications by Shiye Wang, synchronized from public scholarly records. See': '汪士也的论文成果已根据公开学术记录同步。完整且最新的列表请见',
+    'for the complete and latest list.': '。',
+    'Last updated 17 October 2026 · 21 journal articles': '更新于2026年10月17日 · 21 篇期刊论文',
     'Title of your paper': '论文标题',
     'Journal Name': '期刊名称',
 
@@ -188,6 +191,7 @@
 
   var translatedAttributes = ['alt', 'aria-label', 'title', 'content'];
   var currentLanguage = readSavedLanguage();
+  var fixedLanguage = document.body ? document.body.getAttribute('data-fixed-language') : '';
 
   function readSavedLanguage() {
     try {
@@ -307,8 +311,15 @@
     headerWrap.appendChild(group);
   }
 
-  createLanguageSwitch();
-  applyLanguage(currentLanguage, false);
+  if (fixedLanguage === 'en') {
+    currentLanguage = 'en';
+    document.documentElement.lang = 'en';
+    translateTextNodes('en');
+    translateAttributes('en');
+  } else {
+    createLanguageSwitch();
+    applyLanguage(currentLanguage, false);
+  }
 
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('site-nav');
