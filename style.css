@@ -127,6 +127,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); }
 .lab-news-item { padding: 76px 0 84px; border-top: 1px solid var(--shallow); }
 .lab-news-item:first-child { border-top: 0; }
 .lab-news-section .lab-news-item { padding-top: 0; }
+.lab-news-section .lab-news-item + .lab-news-item { padding-top: 76px; }
 .lab-news-header { margin-bottom: 30px; }
 .lab-news-header time { display: block; margin-bottom: 8px; color: var(--magenta); font-size: .9rem; letter-spacing: .02em; }
 .lab-news-header h2, .lab-news-header h3 { max-width: 26em; margin: 0; font-size: clamp(1.9rem, 4.2vw, 2.8rem); line-height: 1.18; letter-spacing: -.015em; }
@@ -176,6 +177,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); }
   .news-intro { padding: 58px 0 42px; }
   .news-intro h1 { font-size: 3rem; }
   .lab-news-item { padding: 54px 0 62px; }
+  .lab-news-section .lab-news-item + .lab-news-item { padding-top: 54px; }
   .lab-news-header { margin-bottom: 22px; }
   .lab-news-header h2, .lab-news-header h3 { font-size: 1.85rem; }
   .news-carousel { margin-inline: -24px; }
