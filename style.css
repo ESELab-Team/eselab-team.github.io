@@ -121,17 +121,18 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); }
 .news-intro h1 { margin: 0; font-size: clamp(2.8rem, 7vw, 5.2rem); line-height: 1; letter-spacing: -.035em; }
 .news-intro-text { max-width: 34em; margin: 24px 0 0; color: var(--muted); font-size: 1.05rem; }
 .lab-news-section { background: var(--paper); }
-.lab-news-layout { display: grid; grid-template-columns: minmax(0, 780px) 256px; gap: 36px; align-items: start; }
-.lab-news-main { min-width: 0; }
+.lab-news-layout { display: block; }
+.lab-news-main { width: min(100%, 60vw); min-width: 0; margin-inline: auto; }
 .lab-news-main > h2 { margin-bottom: 44px; }
-.lab-news-item { padding: 76px 0 84px; border-top: 1px solid var(--shallow); }
+.lab-news-item { width: 80%; margin-inline: auto; padding: 76px 0 84px; border-top: 1px solid var(--shallow); }
 .lab-news-item:first-child { border-top: 0; }
 .lab-news-section .lab-news-item { padding-top: 0; }
 .lab-news-section .lab-news-item + .lab-news-item { padding-top: 76px; }
+.lab-news-section .lab-news-item.news-page-first { padding-top: 0; }
 .lab-news-header { margin-bottom: 30px; }
 .lab-news-header time { display: block; margin-bottom: 8px; color: var(--magenta); font-size: .9rem; letter-spacing: .02em; }
 .lab-news-header h2, .lab-news-header h3 { max-width: 26em; margin: 0; font-size: clamp(1.9rem, 4.2vw, 2.8rem); line-height: 1.18; letter-spacing: -.015em; }
-.news-carousel { position: relative; max-width: 780px; margin: 0 0 22px; }
+.news-carousel { position: relative; width: 100%; max-width: none; margin: 0 0 22px; }
 .news-track { display: flex; overflow-x: auto; aspect-ratio: 16 / 9; scroll-snap-type: x mandatory; scroll-behavior: smooth; border: 1px solid var(--contour); border-radius: 3px; background: var(--shallow); scrollbar-width: none; }
 .news-track::-webkit-scrollbar { display: none; }
 .news-track:focus-visible { outline-offset: 5px; }
@@ -146,31 +147,20 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); }
 .carousel-dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: #A9B3BA; cursor: pointer; }
 .carousel-dots button:hover { background: var(--sea); }
 .carousel-dots button[aria-current="true"] { background: var(--ink); }
-.lab-news-copy { max-width: 46em; font-size: 1.02rem; }
+.lab-news-copy { width: 100%; max-width: none; font-size: 1.02rem; }
 .lab-news-copy p { margin: 0 0 16px; }
 .lab-news-copy p:last-child { margin-bottom: 0; }
+.news-pagination { display: flex; width: 80%; margin-inline: auto; align-items: center; justify-content: center; gap: 18px; padding-top: 34px; border-top: 1px solid var(--shallow); }
+.news-pagination[hidden] { display: none; }
+.news-pagination button { min-width: 108px; padding: 10px 16px; border: 1px solid var(--contour); border-radius: 999px; color: var(--ink); background: var(--paper); font: inherit; cursor: pointer; }
+.news-pagination button:hover:not(:disabled) { color: #fff; border-color: var(--ink); background: var(--ink); }
+.news-pagination button:disabled { opacity: .38; cursor: default; }
+.news-pagination span { min-width: 92px; color: var(--muted); font-size: .9rem; text-align: center; }
 
-.visitor-map { position: sticky; top: 96px; min-width: 0; margin-top: 116px; text-align: center; }
-.visitor-map-frame { position: relative; height: 360px; overflow: hidden; contain: layout paint; border: 1px solid #B7C2D3; border-radius: 7px; background: radial-gradient(circle at 50% 42%, #DDE8F8 0%, #9BAFD0 58%, #43587C 100%); box-shadow: 0 12px 30px rgba(16, 35, 68, .14); }
-.visitor-map-bar { position: absolute; z-index: 5; inset: 0 0 auto; height: 32px; padding: 0 12px; color: #fff; background: #050505; font-size: .68rem; font-weight: 700; line-height: 32px; text-align: left; letter-spacing: .02em; }
-.visitor-map-heading { position: absolute; z-index: 4; top: 46px; left: 14px; display: grid; justify-items: start; color: #fff; text-align: left; text-shadow: 0 2px 5px rgba(0, 0, 0, .9); pointer-events: none; }
-.visitor-map-heading strong { font-size: 1rem; line-height: 1.15; }
-.visitor-map-heading span { margin-top: 7px; font-size: .72rem; font-weight: 600; }
-.visitor-globe-map { position: absolute; inset: 32px 0 0; overflow: hidden; contain: layout paint; background: radial-gradient(circle at 50% 46%, #B9C9E1 0%, #6D82A5 60%, #33435F 100%); }
-.visitor-globe-map canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
-.visitor-globe-map canvas:active { cursor: grabbing; }
-.visitor-map-loading { position: absolute; z-index: 2; inset: 50% auto auto 50%; color: #fff; font-size: .72rem; transform: translate(-50%, -50%); text-shadow: 0 1px 4px #000; }
-.visitor-map-credit { position: absolute; z-index: 4; right: 7px; bottom: 5px; color: rgba(255, 255, 255, .9); font-size: 7px; line-height: 1; text-shadow: 0 1px 3px #000; pointer-events: none; }
-.visitor-map-tracker { display: none !important; }
-.visitor-map-note { margin: 10px 10px 0; color: var(--muted); font-size: .72rem; line-height: 1.45; }
-
-@media (max-width: 1040px) {
-  .lab-news-layout { grid-template-columns: minmax(0, 1fr) 230px; gap: 28px; }
-}
-
-@media (max-width: 720px) {
-  .lab-news-layout { grid-template-columns: 1fr; }
-  .visitor-map { position: static; width: min(100%, 320px); margin: 0 auto; }
+@media (max-width: 900px) {
+  .lab-news-main { width: 100%; }
+  .lab-news-item, .news-pagination { width: 100%; }
+  .news-carousel { width: 100%; }
 }
 
 @media (max-width: 640px) {
@@ -178,16 +168,18 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); }
   .news-intro h1 { font-size: 3rem; }
   .lab-news-item { padding: 54px 0 62px; }
   .lab-news-section .lab-news-item + .lab-news-item { padding-top: 54px; }
+  .lab-news-section .lab-news-item.news-page-first { padding-top: 0; }
   .lab-news-header { margin-bottom: 22px; }
   .lab-news-header h2, .lab-news-header h3 { font-size: 1.85rem; }
-  .news-carousel { margin-inline: -24px; }
+  .news-carousel { margin-inline: 0; }
   .news-track { border-right: 0; border-left: 0; border-radius: 0; }
   .carousel-button { width: 38px; height: 38px; font-size: 1.7rem; }
   .carousel-prev { left: 12px; }
   .carousel-next { right: 12px; }
   .carousel-dots { margin-top: 14px; }
   .lab-news-copy { font-size: .98rem; }
-  .visitor-map-frame { height: 350px; }
+  .news-pagination { gap: 10px; }
+  .news-pagination button { min-width: 0; padding-inline: 13px; }
 }
 
 /* ---------- 招生横幅 ---------- */

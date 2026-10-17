@@ -74,6 +74,9 @@
     'Previous image': '上一张图片',
     'Next image': '下一张图片',
     'Choose an image': '选择图片',
+    'Lab news pagination': '实验室动态分页',
+    'Previous page': '上一页',
+    'Next page': '下一页',
     'View image 1': '查看第 1 张图片',
     'View image 2': '查看第 2 张图片',
     'View image 3': '查看第 3 张图片',
@@ -284,6 +287,9 @@
     if (activeFilter && typeof window.eselabApplyFilter === 'function') {
       window.eselabApplyFilter(activeFilter.getAttribute('data-filter'));
     }
+    if (typeof window.eselabRenderNewsPagination === 'function') {
+      window.eselabRenderNewsPagination();
+    }
   }
 
   function createLanguageSwitch() {
@@ -379,7 +385,83 @@
     });
   }
 
-    initCarousels();
+  function initNewsPagination() {
+    var section = document.getElementById('lab-news');
+    var pagination = document.querySelector('[data-news-pagination]');
+    if (!section || !pagination) return;
+
+    var items = Array.prototype.slice.call(section.querySelectorAll('.lab-news-item'));
+    var previous = pagination.querySelector('[data-news-prev]');
+    var next = pagination.querySelector('[data-news-next]');
+    var status = pagination.querySelector('[data-news-page-status]');
+    var pageSize = 3;
+    var pageCount = Math.max(1, Math.ceil(items.length / pageSize));
+    var currentPage = 1;
+
+    try {
+      var requestedPage = Number(new URLSearchParams(window.location.search).get('news-page'));
+      if (Number.isInteger(requestedPage) && requestedPage > 0) currentPage = requestedPage;
+    } catch (error) {
+      /* 不支持 URLSearchParams 时仍可正常使用页面按钮。 */
+    }
+    currentPage = Math.min(currentPage, pageCount);
+
+    function render(updateUrl, shouldScroll) {
+      var start = (currentPage - 1) * pageSize;
+      var end = start + pageSize;
+
+      items.forEach(function (item, index) {
+        item.hidden = index < start || index >= end;
+        item.classList.remove('news-page-first');
+      });
+      if (items[start]) items[start].classList.add('news-page-first');
+
+      pagination.hidden = pageCount <= 1;
+      if (status) {
+        status.textContent = currentLanguage === 'zh'
+          ? '第 ' + currentPage + ' / ' + pageCount + ' 页'
+          : 'Page ' + currentPage + ' of ' + pageCount;
+      }
+      if (previous) previous.disabled = currentPage === 1;
+      if (next) next.disabled = currentPage === pageCount;
+
+      if (updateUrl) {
+        try {
+          var url = new URL(window.location.href);
+          if (currentPage === 1) url.searchParams.delete('news-page');
+          else url.searchParams.set('news-page', String(currentPage));
+          history.replaceState(null, '', url);
+        } catch (error) {
+          /* 本地文件模式下无法更新地址时，不影响分页。 */
+        }
+      }
+
+      if (shouldScroll) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    if (previous) {
+      previous.addEventListener('click', function () {
+        if (currentPage === 1) return;
+        currentPage -= 1;
+        render(true, true);
+      });
+    }
+    if (next) {
+      next.addEventListener('click', function () {
+        if (currentPage === pageCount) return;
+        currentPage += 1;
+        render(true, true);
+      });
+    }
+
+    window.eselabRenderNewsPagination = function () {
+      render(false, false);
+    };
+    render(false, false);
+  }
+
+  initCarousels();
+  initNewsPagination();
 
   var bar = document.querySelector('.filters');
   if (!bar) return;
